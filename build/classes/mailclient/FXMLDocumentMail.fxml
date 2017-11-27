@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mailclient.FXMLDocumentMailController">
+  <children>
+    <TitledPane animated="false" layoutY="-8.0" prefHeight="334.0" prefWidth="400.0" text="New message" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
+      <content>
+        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="323.0" prefWidth="398.0">
+          <children>
+            <Label blendMode="DARKEN" layoutX="21.0" layoutY="5.0" prefHeight="19.0" prefWidth="333.0" text="Destinatario: " textOverrun="CLIP" wrapText="false" AnchorPane.leftAnchor="5.0" />
+            <Label blendMode="DARKEN" layoutX="21.0" layoutY="68.0" prefHeight="19.0" prefWidth="333.0" text="Oggetto:" textOverrun="CLIP" wrapText="false" AnchorPane.leftAnchor="5.0" />
+            <Label blendMode="DARKEN" layoutX="15.0" layoutY="125.0" prefHeight="19.0" prefWidth="333.0" text="Testo:" textOverrun="CLIP" wrapText="false" AnchorPane.leftAnchor="5.0" />
+            <TextField fx:id="textSender" layoutX="30.6" layoutY="43.0" prefHeight="25.0" prefWidth="345.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            <TextField fx:id="textObject" layoutX="24.2" layoutY="89.0" prefHeight="25.0" prefWidth="344.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            <TextArea fx:id="textText" layoutX="20.0" layoutY="154.0" prefHeight="107.0" prefWidth="354.0" wrapText="true" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="146.0" />
+            <Button fx:id="sendButton" layoutX="312.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleSendAction" prefHeight="28.0" prefWidth="60.0" text="Invia" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="10.0" />
+            <Button fx:id="closeButton" layoutX="14.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleDeleteAction" prefHeight="28.0" prefWidth="67.0" text="Elimina" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="10.0" />
+            <Label blendMode="DARKEN" layoutX="21.0" layoutY="24.0" prefHeight="19.0" prefWidth="368.0" text="Inserisci più destinatari separati da una virgola per un invio-multiplo!" textOverrun="CLIP" wrapText="false" AnchorPane.leftAnchor="5.0" />
+          </children>
+        </AnchorPane>
+      </content>
+    </TitledPane>
+  </children>
+</AnchorPane>
