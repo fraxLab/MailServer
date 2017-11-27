@@ -82,10 +82,10 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleMailAnswerAction(javafx.event.ActionEvent event) throws IOException {
-        Parent root;
-        root = FXMLLoader.load(getClass().getResource("/mailclient/FXMLDocumentMail.fxml"));
-        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/mailclient/FXMLDocumentMail.fxml")); 
-        FXMLDocumentMailController controller = fxml.getController();
+
+        
+        
+
         String sender= "ciao";
         
         
@@ -94,18 +94,29 @@ public class FXMLDocumentController implements Initializable {
         
         Mail obj = (Mail)mailTable.getSelectionModel().getSelectedItem();
         TreeItem selectedBox = (TreeItem) treeView.getSelectionModel().selectedItemProperty().getValue();
-        
+
         if(obj != null && selectedBox != null){    
             String mittente = obj.getMittente();
             String[] split = selectedBox.toString().split(":");
             String value = split[1].trim() + ": " + model.getMails().size();
-            
+           
+            // Devo assicurarmi che sto selezionando un messaggio da quelli
+            // in arrivo
             if(value.compareTo("Messaggi in arrivo: " + model.getMails().size()) == 0){
             //    controller.setSender(sender);
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mailclient/FXMLDocumentMail.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    //FXMLLoader fxml = new FXMLLoader(getClass().getResource("/mailclient/FXMLDocumentMail.fxml")); 
+
+                    FXMLDocumentMailController controller = fxmlLoader.getController();
+                    controller.setSender(mittente);
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 alert.setHeaderText("Devi selezionare un messaggio dai messaggi in arrivo!");
                 alert.showAndWait();
