@@ -82,27 +82,20 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleMailAnswerAction(javafx.event.ActionEvent event) throws IOException {
-
-        
-        
-
-        String sender= "ciao";
-        
-        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         
+        //mail selezionata e suo box di contenimento
         Mail obj = (Mail)mailTable.getSelectionModel().getSelectedItem();
         TreeItem selectedBox = (TreeItem) treeView.getSelectionModel().selectedItemProperty().getValue();
 
         if(obj != null && selectedBox != null){    
-            String mittente = obj.getMittente();
             String[] split = selectedBox.toString().split(":");
             String value = split[1].trim() + ": " + model.getMails().size();
-           
+            String value1 = split[1].trim() + ": " + "frax@gmail.com";
             // Devo assicurarmi che sto selezionando un messaggio da quelli
-            // in arrivo
-            if(value.compareTo("Messaggi in arrivo: " + model.getMails().size()) == 0){
+            // in arrivo che sono visibili anche nel caso è selezionato il treeitem account
+            if(value.compareTo("Messaggi in arrivo: " + model.getMails().size()) == 0 || value1.compareTo("account: frax@gmail.com") == 0){
             //    controller.setSender(sender);
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mailclient/FXMLDocumentMail.fxml"));
@@ -110,7 +103,9 @@ public class FXMLDocumentController implements Initializable {
                     //FXMLLoader fxml = new FXMLLoader(getClass().getResource("/mailclient/FXMLDocumentMail.fxml")); 
 
                     FXMLDocumentMailController controller = fxmlLoader.getController();
-                    controller.setSender(mittente);
+                    controller.setSender(obj.getMittente());
+                    controller.setText(obj.getTesto() 
+                            + "\n------------------------------------\n");
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root1));
                     stage.show();

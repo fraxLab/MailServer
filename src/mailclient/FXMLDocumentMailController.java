@@ -88,6 +88,10 @@ public class FXMLDocumentMailController implements Initializable {
     public void setSender(String sender){
         this.textSender.setText(sender);
     }
+
+    public void setText(String text){
+        this.textText.setText(text);
+    }
     
     
 }
