@@ -50,7 +50,8 @@ public class FXMLDocumentController implements Initializable {
     public Label showDate;
     @FXML
     public Label showObject;
-    
+    @FXML
+    public Button buttonSend;
     @FXML
     public Button buttonDelete;
     
@@ -96,16 +97,16 @@ public class FXMLDocumentController implements Initializable {
             // Devo assicurarmi che sto selezionando un messaggio da quelli
             // in arrivo che sono visibili anche nel caso è selezionato il treeitem account
             if(value.compareTo("Messaggi in arrivo: " + model.getMails().size()) == 0 || value1.compareTo("account: frax@gmail.com") == 0){
-            //    controller.setSender(sender);
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/mailclient/FXMLDocumentMail.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
-                    //FXMLLoader fxml = new FXMLLoader(getClass().getResource("/mailclient/FXMLDocumentMail.fxml")); 
 
                     FXMLDocumentMailController controller = fxmlLoader.getController();
-                    controller.setSender(obj.getMittente());
+                    controller.setReceiver(obj.getMittente());
                     controller.setText(obj.getTesto() 
                             + "\n------------------------------------\n");
+                    
+                    //Open new windows with e-mail pre-compilated
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root1));
                     stage.show();
@@ -153,11 +154,16 @@ public class FXMLDocumentController implements Initializable {
         model.addObserver(mailObserver);
         createTreeView();
         mailObserver.setupView(treeView);
+        
+        //removing lateral scroll 
+        mailText.setWrapText(true);
+
        
         // Setting the 3 colum of the table view with the 
         subject.setCellValueFactory(new PropertyValueFactory<>("argomento"));
         from.setCellValueFactory(new PropertyValueFactory<>("mittente"));
         data.setCellValueFactory(new PropertyValueFactory<>("date"));
+        
         //Fill the mailTable with the Observable list of e-mail
         mailTable.setItems(model.getMails());
         
@@ -213,6 +219,16 @@ public class FXMLDocumentController implements Initializable {
                 if(selectedItem.getValue().compareTo("Cestino: " + model.getMailsDeleted().size()) == 0)
                     mailTable.setItems(model.getMailsDeleted());
                }
+        });
+        
+        treeView.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue observable, Object oldValue, Object newValue) -> {
+            TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+            if(selectedItem.getValue().compareTo("Messaggi in arrivo: " + model.getMails().size()) == 0
+                    || selectedItem.getValue().compareTo("account: " + model.getAccount()) == 0)
+                buttonSend.setVisible(true);
+            else
+                buttonSend.setVisible(false);
         });
 
     }

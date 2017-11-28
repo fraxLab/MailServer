@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/Users/Francesco/Documents/NetBeansProjects/MailClient/src/mailclient/FXMLDocumentMailController.java</file>
             <file>file:/C:/Users/Francesco/Documents/NetBeansProjects/MailClient/src/mailclient/FXMLDocumentController.java</file>
-            <file>file:/C:/Users/Francesco/Documents/NetBeansProjects/MailClient/src/mailclient/Mail.java</file>
+            <file>file:/C:/Users/Francesco/Documents/NetBeansProjects/MailClient/src/mailclient/MailClient.java</file>
             <file>file:/C:/Users/Francesco/Documents/NetBeansProjects/MailClient/src/mailclient/Model.java</file>
             <file>file:/C:/Users/Francesco/Documents/NetBeansProjects/MailClient/src/mailclient/MailDataObserver.java</file>
+            <file>file:/C:/Users/Francesco/Documents/NetBeansProjects/MailClient/src/mailclient/FXMLDocument.fxml</file>
         </group>
     </open-files>
 </project-private>

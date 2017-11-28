@@ -50,6 +50,7 @@ public class FXMLDocumentMailController implements Initializable {
         alert.setTitle("Information Dialog");
         alert.setHeaderText("Mail Send");
         
+        //Gettin e-mail information
         String mittente = model.getAccount();             
         String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
         String testo = textText.getText();
@@ -57,6 +58,8 @@ public class FXMLDocumentMailController implements Initializable {
         String destinatario = textSender.getText(); 
         
         String[] split = destinatario.split(",");
+        
+        //Se ci sono più destinatari invio tante e-mail quanti sono 
         if(split.length > 1){
             for (String email : split) {
                 Mail mail = new Mail(mittente, email.trim(), testo, oggetto, date);
@@ -68,7 +71,7 @@ public class FXMLDocumentMailController implements Initializable {
             model.addMail(model.getMailsSended(), mail);
             alert.setHeaderText("Mail Send");
         } else {
-            alert.setHeaderText("Mail not send, wrong data!");
+            alert.setHeaderText("Mail not send, wrong sender!");
             alert.showAndWait();
         }
         
@@ -85,7 +88,7 @@ public class FXMLDocumentMailController implements Initializable {
         stage.close();
     }
     
-    public void setSender(String sender){
+    public void setReceiver(String sender){
         this.textSender.setText(sender);
     }
 

@@ -71,6 +71,8 @@ public class Model extends Observable{
      */
     
     public boolean deleteMail(ObservableList<Mail> box, Mail mail){
+        if(!box.equals(mailListDeleted))
+            mailListDeleted.add(mail);
         box.remove(mail);
         setChanged();
         notifyObservers();
